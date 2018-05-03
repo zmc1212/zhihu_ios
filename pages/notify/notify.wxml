@@ -1,2 +1,42 @@
-<view animation="{{animationData}}" style="background:red;height:100rpx;width:100rpx"></view>
-<view bindtap='rotateAndScale'>sss</view>
+<view>
+<swiper  duration="1000" bindchange="listenSwiper" class="swiper-think" >
+<!--swiper-item只能包含一个节点再多会自动删除-->
+    <swiper-item wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" wx:key="index" >
+        <view style="">
+          <text>{{item.question}}</text> 
+        </view>
+    </swiper-item>
+</swiper>
+ <view class='follow'>
+    <text>关注有趣的人,收获更多好想法</text>
+    <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+  </view>
+  <view wx:for="{{follows}}" wx:for-index="idx" wx:for-item="item" wx:key="index">
+    <view class='follow_p'>
+      <view class='img'>
+        <image src='{{item.follow_source_img}}'></image>
+      </view>
+      <view class='content'>
+        <view class='left_item'>
+           <text>{{item.follow_source_name}}</text>
+        <text>「{{item.skill}}」 话题的活跃回答者</text>
+        <view class="actions">
+          <view class="dot">
+            <a>{{item.answer_num}} 回答 </a>
+          </view>
+          <view>
+            <a>{{item.comment_num}} 关注 </a>
+          </view>
+        </view>
+
+        </view>
+        <view class="right_item">
+          <view bindtap='followyou'  data-text="+ 关注">+ 关注</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='tac change'>
+    <text class="index_word" bindtap='change'>换一批</text>
+  </view>
+</view>

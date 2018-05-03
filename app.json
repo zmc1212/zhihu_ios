@@ -29,13 +29,13 @@
           "selectedIconPath": "images/index_focus.png"
         },
         {
-          "pagePath": "pages/index/index",
+          "pagePath": "pages/notify/notify",
           "text": "想法",
           "iconPath": "images/discovery.png",
           "selectedIconPath": "images/discovery_focus.png"
         },
         {
-          "pagePath": "pages/notify/notify",
+          "pagePath": "pages/index/index",
           "text": "市场",
           "iconPath": "images/ring.png",
           "selectedIconPath": "images/ring_focus.png"

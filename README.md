@@ -35,6 +35,10 @@ https://github.com/zmc1212/zhihu_ios.git
 
 ![](images/index_tab.gif)
 
+上拉刷新 下拉加载更多
+
+![](images/index_refresh.gif)
+
 底部 tab 切换
 
 ![](images/index_bottom.gif)

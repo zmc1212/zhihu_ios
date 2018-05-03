@@ -1,49 +1,222 @@
+var sliderWidth = 96; // 需要设置slider的宽度，用于计算中间位置
+var app = getApp();
+var util = require('../../utils/utils.js');
 Page({
   data: {
-    animationData: {}
+    tabs: ["关注", "推荐", "热榜"],
+    activeIndex: 1,
+    sliderOffset: 0,
+    sliderLeft: 0,
+    sliderW: 0,
+    feed: [],
+    feed_length: 0,
+    scrollHeight: 0,
+    follows: [],
+    follow_length: 0,
   },
-  onShow: function () {
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'ease',
-    })
+  onLoad: function () {
+    var that = this;
+    //调用应用实例的方法获取全局数据
+    this.getData();
+    this.getFollowData(0, 4);
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          scrollHeight: res.windowHeight,
+          sliderLeft: that.data.sliderW,
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        });
+      }
+    });
+  },
+  onReady: function () {
 
-    this.animation = animation
-
-    animation.scale(2, 2).rotate(45).step()
+  },
+  //navbar切换事件
+  tabClick: function (e) {
+    // console.log(e.currentTarget.id)
+    // var selId = e.currentTarget.id
+    // console.log(selId);
+    // var that = this
+    // wx.getSystemInfo({
+    //   success: function (res) {
+    //     if (selId == 0 || selId == 2) {
+    //       that.setData({
+    //         scrollHeight: 0,
+    //       });
+    //     } else {
+    //       that.setData({
+    //         scrollHeight: res.windowHeight
+    //       });
+    //     }
+    //   }
+    // });
 
     this.setData({
-      animationData: animation.export()
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
+  },
+  //事件处理函数
+  bindItemTap: function () {
+    wx.navigateTo({
+      url: '../answer/answer'
     })
-
+  },
+  bindQueTap: function () {
+    wx.navigateTo({
+      url: '../question/question'
+    })
+  },
+  upper: function () {
+    //在标题栏中显示加载
+    wx.showNavigationBarLoading()
+    this.refresh();
+    console.log("upper");
     setTimeout(function () {
-      animation.translate(30).step()
-      this.setData({
-        animationData: animation.export()
+      //完成停止加载
+      wx.hideNavigationBarLoading();
+      //停止下拉刷新
+      wx.stopPullDownRefresh();
+    }, 1000);
+  },
+  lower: function (e) {
+    wx.showNavigationBarLoading();
+    var that = this;
+    setTimeout(function () { wx.hideNavigationBarLoading(); that.nextLoad(); }, 1000);
+    console.log("lower")
+  },
+  refresh: function () {
+    wx.showToast({
+      title: '刷新中',
+      icon: 'loading',
+      duration: 2000
+    });
+    var feed = util.getData2();
+    console.log("loaddata");
+    var feed_data = feed.data;
+    this.setData({
+      feed: feed_data,
+      feed_length: feed_data.length
+    });
+    setTimeout(function () {
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'success',
+        duration: 2000
       })
-    }.bind(this), 1000)
+    }, 2000)
+
   },
-  rotateAndScale: function () {
-    // 旋转同时放大
-    this.animation.rotate(45).scale(2, 2).step()
+
+  //使用本地 feed数据实现继续加载效果
+  nextLoad: function () {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 4000
+    })
+    var next = util.getNext();
+    console.log("continueload");
+    var next_data = next.data;
     this.setData({
-      animationData: this.animation.export()
+      feed: this.data.feed.concat(next_data),
+      feed_length: this.data.feed_length + next_data.length
+    });
+    setTimeout(function () {
+      wx.showToast({
+        title: '加载成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }, 3000)
+  },
+  getData: function () {
+    var feed = util.getData2();
+    var feed_data = feed.data;
+    console.log(feed_data)
+    this.setData({
+      feed: feed_data,
+      feed_length: feed_data.length
+    });
+  },
+  getFollowData: function (start, end) {
+    var follows = util.getfollow();
+    var follow_data = follows.data.slice(start, end);
+    this.setData({
+      follows: follow_data,
+      follow_length: follow_data.length
+    });
+  },
+  followyou: function (e) {
+    app.followyou(e);
+    e.target.dataset.text = '已关注'
+    this.setData({
+      addfollow: e.target.dataset.text
     })
   },
-  rotateThenScale: function () {
-    // 先旋转后放大
-    this.animation.rotate(45).step()
-    this.animation.scale(2, 2).step()
+  change: function () {
+    var changeNum = [0, 4];
+    var changeNum2 = [4, 8];
+    // console.log(this.data.flag);
+    if (this.data.flag == true) {
+      this.getFollowData(changeNum2[0], changeNum2[1]);
+      this.data.flag = false;
+    } else {
+      this.getFollowData(changeNum[0], changeNum[1]);
+      this.data.flag = true;
+    }
+  },
+  tofeed: function () {
     this.setData({
-      animationData: this.animation.export()
+      currentTab: 1
     })
   },
-  rotateAndScaleThenTranslate: function () {
-    // 先旋转同时放大，然后平移
-    this.animation.rotate(45).scale(2, 2).step()
-    this.animation.translate(100, 100).step({ duration: 1000 })
-    this.setData({
-      animationData: this.animation.export()
+  //事件处理函数
+  bindItemTap: function () {
+    console.log(111222);
+    wx.navigateTo({
+      url: '../answer/answer'
     })
-  }
-})
+  },
+  upper: function () {
+    //在标题栏中显示加载
+    wx.showNavigationBarLoading()
+    console.log("upper");
+    this.refresh();
+    setTimeout(function () {
+      //完成停止加载
+      wx.hideNavigationBarLoading();
+      //停止下拉刷新
+      wx.stopPullDownRefresh();
+    }, 1000);
+  },
+  lower: function (e) {
+    wx.showNavigationBarLoading();
+    var that = this;
+    setTimeout(function () { wx.hideNavigationBarLoading(); that.nextLoad(); }, 1000);
+    console.log("lower")
+  },
+  refresh: function () {
+    wx.showToast({
+      title: '刷新中',
+      icon: 'loading',
+      duration: 1000
+    });
+    var feed = util.getData2();
+    console.log("loaddata");
+    var feed_data = feed.data;
+    this.setData({
+      feed: feed_data,
+      feed_length: feed_data.length
+    });
+    setTimeout(function () {
+      wx.showToast({
+        title: '刷新成功',
+        icon: 'success',
+        duration: 1000
+      })
+    }, 1000)
+
+  },
+});

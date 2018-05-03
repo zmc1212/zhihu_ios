@@ -157,4 +157,27 @@
 .footer_word {
   color:#999999;
 }
+/*login  */
+.loginM {
+  height: 100%;
+}
+.logo {
+  position: absolute;
+  bottom: 4%;
+  left: 29%;
+  display: flex;
+}
+.logo>image {
+   width: 135rpx;
+    height: 135rpx;
+}
+.title {
+  font-size: 20px;
+}
+.show-text {
+  color:#A4A4A4;
+}
+.txt {
+  margin-left:20rpx;
+}
 

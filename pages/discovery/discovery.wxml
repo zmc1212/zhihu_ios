@@ -1,4 +1,24 @@
 <view>
+<view hidden="{{loginS}}">
+  <view class="loginM" bindtap='toLogin' style="height:{{loginH}}px">
+  <view class="logo" bindtap='toChat'>
+    <image src="/images/logo2.png"></image>
+    <view>
+      <view class="txt">
+        <view>
+          <text class="title">知乎</text>
+        </view>
+        <view>
+          <text class="show-text">发现更大的世界</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view>
+  </view>
+</view>
+</view>
+
   <view class='header'>
         <view class='left'>
           <image src='../../images/search.png'></image>

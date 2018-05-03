@@ -8,10 +8,12 @@ Page({
     feed: [],
     feed_length: 0,
     scrollHeight: 0,
-    flag:true,
+    flag:false,
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
+    loginH:0,
+    loginS:false,
     expertList: [{ //假数据
       img: "avatar.png",
       name: "欢顔",
@@ -62,9 +64,15 @@ Page({
           //减去的200rpx为header和line还有tab栏的高度，如果此高度计算不准确会造成页面多出一个纵向滚动条
         var calc = clientHeight * rpxR - 200;
         that.setData({
+          loginH: clientHeight,
           winHeight: calc,
           scrollHeight: res.windowHeight,
         });
+        setTimeout(function () {
+          that.setData({
+            loginS: true
+          })
+        }, 3000);
       }
     });
   },
