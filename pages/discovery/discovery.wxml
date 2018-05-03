@@ -1,0 +1,52 @@
+<view>
+  <view class='header'>
+        <view class='left'>
+          <image src='../../images/search.png'></image>
+          <input class='search' type='text' placeholder='什么样的应届生值得招' />
+        </view>
+        <view class='right'>
+          <image src='../../images/write.png'></image>
+          <text>提问</text>
+        </view>
+  </view>
+  <scroll-view scroll-x="true" scroll-y="false" class="tab-h" scroll-left="{{scrollLeft}}">
+    <block class="item-content" wx:for="{{tabslist}}" wx:key="index">
+      <view class="tab-item {{currentTab==index?'active':''}}" data-current="{{index}}" bindtap="swichNav">{{item}} </view>
+    </block>
+  </scroll-view>
+  <view class='line'></view>
+  <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <view>
+          <import src="../template/template.wxml"></import>
+          <template is="follows" data="{{follows}}"></template>
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <view>
+          <import src="../template/template.wxml"></import>
+          <template is="feed" data="{{feed,scrollHeight}}"></template>
+        </view>
+      </scroll-view>
+    </swiper-item>
+     <swiper-item>
+      <scroll-view scroll-y="true" class="scoll-h">
+        <view>
+          grgrgrgrgrg
+        </view>
+      </scroll-view>
+    </swiper-item>
+    <!-- <swiper-item wx:for="{{tabscontent.length}}">
+      <block wx:for="{{tabscontent}}" wx:key="*this" wx:item="item">
+      <scroll-view scroll-y="true" class="scoll-h">
+          <view>{{item}}</view>
+          <import src="../template/template.wxml"></import>
+          <template is="{{item}}" data="{{item}}"></template>
+      </scroll-view>
+      </block>
+    </swiper-item> -->
+  </swiper>
+</view>

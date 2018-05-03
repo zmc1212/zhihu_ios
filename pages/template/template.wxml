@@ -1,0 +1,69 @@
+<template name="feed">
+  <scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="5" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}px">
+    <block wx:for="{{feed}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}" wx:key="index">
+      <view class="feed-item">
+        <view class="feed-content">
+          <view class="question" qid="{{question_id}}" bindtap="bindQueTap">
+            <a class="question-link">
+              <text>{{item.question}}</text>
+            </a>
+          </view>
+          <view class="answer-body">
+            <view bindtap="bindItemTap">
+              <text class="answer-txt" aid="{{answer_id}}">{{item.answer_ctnt}}</text>
+            </view>
+            <view class="answer-actions" bindtap="bindItemTap">
+              <view class="like dot">
+                <a>{{item.good_num}} 赞同 </a>
+              </view>
+              <view class="comments">
+                <a>{{item.comment_num}} 评论 </a>
+              </view>
+              <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+</template>
+<template name="follows">
+  <!-- <scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="5" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}px">  -->
+  <view class='follow'>
+    <text>你可能感兴趣的人</text>
+    <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+  </view>
+  <view wx:for="{{follows}}" wx:for-index="idx" wx:for-item="item" wx:key="index">
+    <view class='follow_p'>
+      <view class='img'>
+        <image src='{{item.follow_source_img}}'></image>
+      </view>
+      <view class='content'>
+        <view class='left_item'>
+           <text>{{item.follow_source_name}}</text>
+        <text>「{{item.skill}}」 话题的活跃回答者</text>
+        <view class="actions">
+          <view class="dot">
+            <a>{{item.answer_num}} 回答 </a>
+          </view>
+          <view>
+            <a>{{item.comment_num}} 关注 </a>
+          </view>
+        </view>
+
+        </view>
+        <view class="right_item">
+          <view bindtap='followyou'>+ 关注</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='tac change'>
+    <text class="index_word" bindtap='change'>换一批</text>
+  </view>
+  <view class='tac foorer'>
+    <text class="footer_word">没有更多了，去推荐看看吧</text>
+    <view class='index_word' bindtap='tofeed'>前往推荐</view>
+  </view>
+  <!-- </scroll-view>  -->
+</template>

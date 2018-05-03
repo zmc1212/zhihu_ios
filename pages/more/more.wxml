@@ -1,0 +1,16 @@
+
+<view class="more">
+  <view class="user flex-wrp">
+    <view class="avatar flex-item">
+      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    </view>
+    <view class="user-info flex-item">
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="edit">查看个人主页或编辑简介</text>
+    </view>
+  </view>
+  <view class="user-message">
+    <text>0</text>
+    <text></text>
+  </view>
+</view>

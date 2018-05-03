@@ -1,0 +1,80 @@
+/* pages/index/index.wxss */
+
+page, .page, .page__bd {
+  height: 100%;
+}
+
+.page__bd {
+  padding-bottom: 0;
+}
+.weui-navbar__slider {
+  background-color: #444;
+  height: 2px;
+}
+.question-link text {
+  font-weight: bold;
+}
+.weui-navbar__item {
+  padding:6px 0;
+}
+.weui-navbar__item.weui-bar__item_on {
+  color: #444;
+  font-weight:bold;
+}
+
+.header {
+  height: 100rpx;
+  background-color: #fff;
+  border-bottom: 2rpx solid #ebebeb;
+  display: flex;
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+}
+
+.weui-navbar {
+  border-bottom: 2rpx solid #ebebeb;
+}
+.weui-tab__panel {
+  padding-top:0;
+}
+.left {
+  flex: 7;
+  background-color: #ebebeb;
+  border-radius:13rpx;
+   text-align: center;
+   height:65rpx;
+}
+
+.right {
+  flex: 2;
+}
+
+.left image {
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+  padding: 15rpx 15rpx 15rpx 20rpx;
+  vertical-align: middle;
+}
+.right image {
+  display: inline-block;
+  width: 35rpx;
+  height: 35rpx;
+  padding: 15rpx 15rpx 15rpx 20rpx;
+  vertical-align: middle;
+}
+.right text {
+  color:#1D80DF;
+}
+.search {
+  display: inline-block;
+  height: 65rpx;
+  font-size: 30rpx;
+  vertical-align: middle;
+}
+.follow {
+  padding:10rpx 15rpx;
+}
+.follow text {
+  font-weight: bold;
+}

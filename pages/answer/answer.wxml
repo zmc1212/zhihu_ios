@@ -1,0 +1,70 @@
+<!--answer.wxml-->
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="5" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}}px">
+<view>
+  <view class="question" bindtap="toQuestion">
+    <text class="question-title">电竞职业选手的操作到底有多「恐怖」？</text>
+  </view>
+  <view class="answer-num">
+    <view>
+      <view class="write-answer">
+        <image src='../../images/write.png'></image>
+        <text>写回答</text>
+      </view>
+    </view>
+    <text>查看全部 424 个回答 ></text>
+  </view>
+  <view class='line'></view>
+  <view class="answerer-wrp">
+    <view class="bg-half"></view>
+    <view class="answerer flex-wrp">
+      <view class="avatar flex-item">
+        <image src="../../images/icon2.jpg"></image>
+      </view>
+      <view class="answerer-info flex-item">
+        <text class="answerer-name">faker</text>
+        <text class="answerer-des">何以解忧？唯有暴富！</text>
+      </view>
+      <view class="follow flex-item" bindtap='ss'>
+        <text>十 关注</text>
+      </view>
+    </view>
+  </view>
+  <view class="answer-content">
+    <text>电竞职业选手的操作到底有多恐怖！！！
+
+            拳头公式曾在S3 SKT拿到冠军后为faker做了一个实验,faker用妖姬,要打出当时的操作“闪现,冥火,QREW”就是要一下按七个键（冥火按1是圈，得像流浪的w一样点一下人才会做出攻击）faker打完了这一套操作仅仅用了,0.72秒！！！
+
+        </text>
+    <image src="../../images/faker.gif"></image>
+  </view>
+  <view class="answer-footer flex-wrp" animation="{{animation}}">
+    <view class="good flex-item">
+      <view class="good-bad">
+        <image src="../../images/good-bad.png"></image>
+      </view>
+      <view class="good-num">2.1k</view>
+    </view>
+    <view class="operation-wrp flex-item">
+      <view class="operation flex-wrp flex-tab">
+        <view class="operation-btn flex-item">
+          <image src="../../images/heart2.png"></image>
+          <text>感谢</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/star.png"></image>
+          <text>收藏</text>
+        </view>
+        <view class="operation-btn flex-item">
+          <image src="../../images/comment2.png"></image>
+          <text>302</text>
+        </view>
+
+      </view>
+    </view>
+
+
+
+  </view>
+</view>
+
+</scroll-view>
